@@ -19,10 +19,11 @@ def plt_add_office(office_xy):
 def plt_add_depot(x, y, depot_index):
     plt.scatter(x[depot_index], y[depot_index], color="white", edgecolor="black")
 
-def plt_model(x, y, office_xy):
+def plt_model(x, y, office_xy=None):
     img = plt.imread("bg.jpeg")
     plt.imshow(img, extent=get_img_size_list(x, y))
-    plt_add_office(office_xy)
+    if office_xy:
+        plt_add_office(office_xy)
     plt.scatter(x, y, color="gray", edgecolor="white")
 
 def plt_model_vrp(x, y, office_xy, route_list, depot_index):
@@ -46,3 +47,12 @@ def draw(x, y, office_xy, route_list, depot_index):
     plt.subplot(1,2,2)
     plt_model_vrp(x, y, office_xy,route_list, depot_index)
     plt.show()
+
+def draw_p_center(x, y, index_list):
+    plt_model(x,y)
+    for i in index_list:
+        plt.scatter(x[i], y[i], color="red", edgecolor="white")
+        
+    plt.show()
+
+

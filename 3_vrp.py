@@ -26,6 +26,7 @@ def create_data_model():
     """Stores the data for the problem."""
     data = {}
     data['distance_matrix'] = songpa_data.get_distance_matrix()
+    print(data['distance_matrix'])
     data['num_vehicles'] = salesman_count
     data['depot'] = depot_index
 
