@@ -13,23 +13,22 @@ def get_img_size_list(x, y):
         ]
     return img_size
 
-def plt_add_office(office):
-    plt.scatter(office[0], office[1], color="white", edgecolor="black", zorder=100, marker='D')
+def plt_add_office(office_xy):
+    plt.scatter(office_xy[0], office_xy[1], color="white", edgecolor="black", marker='D')
 
 def plt_add_depot(x, y, depot_index):
-    plt.scatter(x[depot_index], y[depot_index], color="white", edgecolor="black", zorder=100)
+    plt.scatter(x[depot_index], y[depot_index], color="white", edgecolor="black")
 
-
-def draw(x, y, office, use_only=True):
+def plt_model(x, y, office_xy):
     img = plt.imread("bg.jpeg")
     plt.imshow(img, extent=get_img_size_list(x, y))
-    plt_add_office(office)
-    plt.scatter(x, y)
-    if use_only:
-        plt.show()
+    plt_add_office(office_xy)
+    plt.scatter(x, y, color="black", edgecolor="white")
 
+def plt_model_vrp(x, y, office_xy, route_list, depot_index):
+    plt_model(x, y, office_xy)
+    plt_add_depot(x, y, depot_index)
 
-def draw_model(x, y, office, route_list):
     for i in range(len(route_list)):
         x_route, y_route = [], []
 
@@ -37,18 +36,13 @@ def draw_model(x, y, office, route_list):
             x_route.append(x[node])
             y_route.append(y[node])
 
-        plt.plot(x_route, y_route, linestyle='solid', label='route %d'%i)
-
-    img = plt.imread("bg.jpeg")
-    plt_add_office(office)
-
-    plt.imshow(img, extent=get_img_size_list(x, y))
+        plt.plot(x_route, y_route, linestyle='solid', zorder=0, label='route %d'%i)
     
     plt.show()
 
-def draw_all(x, y, office, route_list, depot_index):
+def draw_all(x, y, office_xy, route_list, depot_index):
     plt.subplot(1,2,1)
-    draw(x,y,office, False)
+    plt_model(x,y,office_xy)
     plt.subplot(1,2,2)
-    plt_add_depot(x, y, depot_index)
-    draw_model(x, y, office,route_list)
+    plt_model_vrp(x, y, office_xy,route_list, depot_index)
+    plt.show()

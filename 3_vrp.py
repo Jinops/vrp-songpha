@@ -15,10 +15,10 @@ import graph
 
 x = songpa_data.get_x()
 y = songpa_data.get_y()
-office = songpa_data.get_office() # depot (0)
+office_xy = songpa_data.get_office_xy()
 depot_index = songpa_data.get_min_distance_index_from_office()
 
-vehicle_num = 4
+vehicle_num = 5
 route_list = list([] for dummy in range(vehicle_num))
 
 
@@ -109,4 +109,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    graph.draw_all(x,y,office,route_list, depot_index)
+    graph.draw_all(x,y,office_xy,route_list, depot_index)
