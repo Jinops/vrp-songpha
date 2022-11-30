@@ -15,7 +15,8 @@ import graph
 
 x = songpa_data.get_x()
 y = songpa_data.get_y()
-office = songpa_data.get_office() # depot 0
+office = songpa_data.get_office() # depot (0)
+depot_index = songpa_data.get_min_distance_index_from_office()
 
 vehicle_num = 4
 route_list = list([] for dummy in range(vehicle_num))
@@ -26,7 +27,7 @@ def create_data_model():
     data = {}
     data['distance_matrix'] = songpa_data.get_distance_matrix()
     data['num_vehicles'] = vehicle_num
-    data['depot'] = songpa_data.get_min_distance_index_from_office()
+    data['depot'] = depot_index
 
     return data
 
@@ -108,4 +109,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    graph.draw_all(x,y,office,route_list)
+    graph.draw_all(x,y,office,route_list, depot_index)

@@ -60,5 +60,9 @@ def get_min_distance_index_from_office():
             min_distance = distance_list[i]
             min_index = i
     
-    #print(min_index, min_distance)
+    print('#distance')
+    print(distance_list)
+    print(min_index, min_distance)
     return min_index
+
+get_min_distance_index_from_office()

@@ -16,6 +16,9 @@ def get_img_size_list(x, y):
 def plt_add_office(office):
     plt.scatter(office[0], office[1], color="white", edgecolor="black", zorder=100, marker='D')
 
+def plt_add_depot(x, y, depot_index):
+    plt.scatter(x[depot_index], y[depot_index], color="white", edgecolor="black", zorder=100)
+
 
 def draw(x, y, office, use_only=True):
     img = plt.imread("bg.jpeg")
@@ -31,15 +34,8 @@ def draw_model(x, y, office, route_list):
         x_route, y_route = [], []
 
         for node in route_list[i]:
-            node_index = node-1
-            print(node_index, x[node_index], y[node_index])
-
-            if node_index == -1: # depot
-                x_route.append(office[0])
-                y_route.append(office[1])
-            else:
-                x_route.append(x[node_index])
-                y_route.append(y[node_index])
+            x_route.append(x[node])
+            y_route.append(y[node])
 
         plt.plot(x_route, y_route, linestyle='solid', label='route %d'%i)
 
@@ -50,8 +46,9 @@ def draw_model(x, y, office, route_list):
     
     plt.show()
 
-def draw_all(x, y, office, route_list):
+def draw_all(x, y, office, route_list, depot_index):
     plt.subplot(1,2,1)
     draw(x,y,office, False)
     plt.subplot(1,2,2)
-    draw_model(x,y,office,route_list)
+    plt_add_depot(x, y, depot_index)
+    draw_model(x, y, office,route_list)
