@@ -18,7 +18,7 @@ y = songpa_data.get_y()
 office = songpa_data.get_office() # depot 0
 
 vehicle_num = 4
-route_list = list([] for i in range(vehicle_num))
+route_list = list([] for dummy in range(vehicle_num))
 
 
 def create_data_model():

@@ -27,8 +27,8 @@ def draw(x, y, office, use_only=True):
 
     img = plt.imread("bg.jpeg")
     plt.imshow(img, extent=get_img_size_list(x, y))
-    plt.scatter(x, y)
     plt_add_office(office)
+    plt.scatter(x, y)
     if use_only:
         plt.show()
 
@@ -54,8 +54,9 @@ def draw_model(x, y, office, route_list):
         plt.plot(x_route, y_route, linestyle='solid', label='route %d'%i)
 
     img = plt.imread("bg.jpeg")
-    plt.imshow(img, extent=get_img_size_list(x, y))
     plt_add_office(office)
+
+    plt.imshow(img, extent=get_img_size_list(x, y))
     
     plt.show()
 
