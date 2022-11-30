@@ -18,15 +18,15 @@ y = songpa_data.get_y()
 office_xy = songpa_data.get_office_xy()
 depot_index = songpa_data.get_min_distance_index_from_office()
 
-vehicle_num = 5
-route_list = list([] for dummy in range(vehicle_num))
+salesman_count = 5
+route_list = list([] for dummy in range(salesman_count))
 
 
 def create_data_model():
     """Stores the data for the problem."""
     data = {}
     data['distance_matrix'] = songpa_data.get_distance_matrix()
-    data['num_vehicles'] = vehicle_num
+    data['num_vehicles'] = salesman_count
     data['depot'] = depot_index
 
     return data
@@ -48,10 +48,10 @@ def print_solution(data, manager, routing, solution):
             route_distance += routing.GetArcCostForVehicle(
                 previous_index, index, vehicle_id)
         plan_output += '{}\n'.format(manager.IndexToNode(index))
-        plan_output += 'Distance of the route: {}m\n'.format(route_distance)
+        plan_output += 'Distance of the route: {}\n'.format(route_distance)
         print(plan_output)
         max_route_distance = max(route_distance, max_route_distance)
-    print('Maximum of the route distances: {}m'.format(max_route_distance))
+    print('Maximum of the route distances: {}'.format(max_route_distance))
 
 
 
@@ -109,4 +109,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    graph.draw_all(x,y,office_xy,route_list, depot_index)
+    graph.draw(x,y,office_xy,route_list, depot_index)

@@ -61,5 +61,3 @@ def get_min_distance_index_from_office():
             min_index = i
 
     return min_index
-
-get_min_distance_index_from_office()

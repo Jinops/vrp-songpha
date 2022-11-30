@@ -23,7 +23,7 @@ def plt_model(x, y, office_xy):
     img = plt.imread("bg.jpeg")
     plt.imshow(img, extent=get_img_size_list(x, y))
     plt_add_office(office_xy)
-    plt.scatter(x, y, color="black", edgecolor="white")
+    plt.scatter(x, y, color="gray", edgecolor="white")
 
 def plt_model_vrp(x, y, office_xy, route_list, depot_index):
     plt_model(x, y, office_xy)
@@ -40,7 +40,7 @@ def plt_model_vrp(x, y, office_xy, route_list, depot_index):
     
     plt.show()
 
-def draw_all(x, y, office_xy, route_list, depot_index):
+def draw(x, y, office_xy, route_list, depot_index):
     plt.subplot(1,2,1)
     plt_model(x,y,office_xy)
     plt.subplot(1,2,2)

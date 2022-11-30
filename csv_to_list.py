@@ -1,13 +1,9 @@
 import csv
 
-def getList(nomalization=False):
+def getList():
     list = []
-
-    fileName = 'xy.csv'
-    if nomalization:
-        fileName = 'xy_normalization.csv'
     
-    with open(fileName, newline='', encoding='utf-8-sig') as csvfile:
+    with open('xy.csv', newline='', encoding='utf-8-sig') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar=' ')
         for row in reader:
             data_list = []
