@@ -11,16 +11,21 @@
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 import songpa_data
+import graph
 
 x = songpa_data.get_x()
 y = songpa_data.get_y()
-office = songpa_data.get_office()
+office = songpa_data.get_office() # depot 0
+
+vehicle_num = 4
+route_list = list([] for i in range(vehicle_num))
+
 
 def create_data_model():
     """Stores the data for the problem."""
     data = {}
     data['distance_matrix'] = songpa_data.get_distance_matrix()
-    data['num_vehicles'] = 4
+    data['num_vehicles'] = vehicle_num
     data['depot'] = songpa_data.get_min_distance_index_from_office()
 
     return data
@@ -35,6 +40,7 @@ def print_solution(data, manager, routing, solution):
         plan_output = 'Route for vehicle {}:\n'.format(vehicle_id)
         route_distance = 0
         while not routing.IsEnd(index):
+            route_list[vehicle_id].append(manager.IndexToNode(index)) # append route
             plan_output += ' {} -> '.format(manager.IndexToNode(index))
             previous_index = index
             index = solution.Value(routing.NextVar(index))
@@ -102,3 +108,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    graph.draw_model(x,y,office,route_list)
