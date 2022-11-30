@@ -3,9 +3,6 @@ import matplotlib.pyplot as plt
 img_margin = 0.2
 data_reduce = 0.01
 
-def get_reduced_axis_list(axis_list):
-    return list(map(lambda x: x, axis_list))
-
 def get_img_size_list(x, y):
     x_diff,y_diff = max(x)-min(x), max(y)-min(y)
     img_size = [
@@ -21,10 +18,6 @@ def plt_add_office(office):
 
 
 def draw(x, y, office, use_only=True):
-    x = get_reduced_axis_list(x)
-    y = get_reduced_axis_list(y)
-    office = get_reduced_axis_list(office)
-
     img = plt.imread("bg.jpeg")
     plt.imshow(img, extent=get_img_size_list(x, y))
     plt_add_office(office)
@@ -47,9 +40,6 @@ def draw_model(x, y, office, route_list):
             else:
                 x_route.append(x[node_index])
                 y_route.append(y[node_index])
-
-        x_route = get_reduced_axis_list(x_route)
-        y_route = get_reduced_axis_list(y_route)
 
         plt.plot(x_route, y_route, linestyle='solid', label='route %d'%i)
 
