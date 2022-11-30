@@ -16,7 +16,11 @@ def get_img_size_list(x, y):
         ]
     return img_size
 
-def draw(x, y, office):
+def plt_add_office(office):
+    plt.scatter(office[0], office[1], color="white", edgecolor="black", zorder=100, marker='D')
+
+
+def draw(x, y, office, use_only=True):
     x = get_reduced_axis_list(x)
     y = get_reduced_axis_list(y)
     office = get_reduced_axis_list(office)
@@ -24,26 +28,39 @@ def draw(x, y, office):
     img = plt.imread("bg.jpeg")
     plt.imshow(img, extent=get_img_size_list(x, y))
     plt.scatter(x, y)
-    plt.scatter(office[0], office[1])
-    plt.show()
+    plt_add_office(office)
+    if use_only:
+        plt.show()
+
 
 def draw_model(x, y, office, route_list):
     for i in range(len(route_list)):
         x_route, y_route = [], []
 
-        for depot in route_list[i]:
-            depot_index = depot-1
-            print(depot_index, x[depot_index], y[depot_index])
-            x_route.append(x[depot_index])
-            y_route.append(y[depot_index])
+        for node in route_list[i]:
+            node_index = node-1
+            print(node_index, x[node_index], y[node_index])
+
+            if node_index == -1: # depot
+                x_route.append(office[0])
+                y_route.append(office[1])
+            else:
+                x_route.append(x[node_index])
+                y_route.append(y[node_index])
 
         x_route = get_reduced_axis_list(x_route)
         y_route = get_reduced_axis_list(y_route)
-        
+
         plt.plot(x_route, y_route, linestyle='solid', label='route %d'%i)
 
     img = plt.imread("bg.jpeg")
     plt.imshow(img, extent=get_img_size_list(x, y))
-    office = get_reduced_axis_list(office)
-    plt.scatter(office[0], office[1])
+    plt_add_office(office)
+    
     plt.show()
+
+def draw_all(x, y, office, route_list):
+    plt.subplot(1,2,1)
+    draw(x,y,office, False)
+    plt.subplot(1,2,2)
+    draw_model(x,y,office,route_list)

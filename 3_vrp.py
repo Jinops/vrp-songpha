@@ -108,4 +108,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    graph.draw_model(x,y,office,route_list)
+    graph.draw_all(x,y,office,route_list)
