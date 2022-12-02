@@ -19,7 +19,7 @@ def maxindex(dist, n):
 			mi = i
 	return mi
 
-def selectKcities(node_length, weights, center_count):
+def selectKcities(node_length, weights, center_count, default_center):
 	dist = [0]*node_length
 	centers = []
 
@@ -27,7 +27,7 @@ def selectKcities(node_length, weights, center_count):
 		dist[i] = 10**9
 		
 	# index of city having the maximum distance to it's closest center
-	max_index = random.randrange(0,node_length-1)
+	max_index = default_center
 	for i in range(center_count):
 		centers.append(max_index)
 		for j in range(node_length):
@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
 	# Function Call
 	for i in range(n):
-		max, centers = selectKcities(n, weights, k)
+		max, centers = selectKcities(n, weights, k, i)
 		print(max, centers)
 		if max < top_dist :
 			top_dist = max
