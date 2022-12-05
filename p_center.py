@@ -1,12 +1,10 @@
 # https://www.geeksforgeeks.org/greedy-approximate-algorithm-for-k-centers-problem/
 
-import random
 import songpa_data
 import graph
 
 x = songpa_data.get_x()
 y = songpa_data.get_y()
-office_xy = songpa_data.get_office_xy()
 
 top_dist = 10**9
 top_centers = []
