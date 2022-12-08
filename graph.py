@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 
 img_margin = 0.2
-data_reduce = 0.01
 
 def get_img_size_list(x, y):
     x_diff,y_diff = max(x)-min(x), max(y)-min(y)
