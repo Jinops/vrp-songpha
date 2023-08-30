@@ -1,11 +1,10 @@
 # vrp-songpha
 
-![thumbnail](/ex.png)
-
 Route finding for checking Songpha-gu's facilities using VRP
   
 VRP 알고리즘을 활용한 송파구 제설함 점검 최적 경로 찾기
 
+![thumbnail](/ex.png)
 
 ## 목적
 
